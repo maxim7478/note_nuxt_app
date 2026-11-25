@@ -1,0 +1,48 @@
+@use "sass:list";
+@use "sass:map";
+
+// MEDIA QUERIES MIXIN
+
+@mixin mq($breakpoint, $area: min) {
+  $breakpoints: (
+    "mobile":  0,
+    "tablet":  768px,
+    "laptop":  1280px,
+    "desktop": 1920px,
+  );
+  $value: map.get($breakpoints, $breakpoint);
+  $areas: (only, max, min);
+
+  @if $area == min {
+    @media (min-width: $value) {
+      @content;
+    }
+  } @else if $area == only or max {
+    @if list.index($areas, $area) {
+      $index-current: list.index(($breakpoints), ($breakpoint $value));
+
+      @if $index-current < list.length($breakpoints) {
+        $index-next: $index-current + 1;
+        $value-max: list.nth(list.nth($breakpoints, $index-next), 2) - 0.02;
+
+        @if $area == only {
+          @media (min-width: $value) and (max-width: $value-max) {
+            @content;
+          }
+        }
+
+        @if $area == max {
+          @media (max-width: $value-max) {
+            @content;
+          }
+        }
+      }
+
+      @if $index-current == list.length($breakpoints) {
+        @media (min-width: $value) {
+          @content;
+        }
+      }
+    }
+  } @else { @error "Breakpoit area '#{$area}' not found in areas' map '#{$areas}'."; }
+}

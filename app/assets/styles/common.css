@@ -1,0 +1,88 @@
+:root {
+  /* Отступы: padding, margin и gap. */
+  --size-none: 0rem;
+  --size-7xs-1: 0.0625rem;
+  --size-6xs-2: 0.125rem;
+  --size-5xs-4: 0.25rem;
+  --size-4xs-6: 0.375rem;
+  --size-3xs-8: 0.5rem;
+  --size-xxs-10: 0.625rem;
+  --size-xs-12: 0.75rem;
+  --size-sm-14: 0.875rem;
+  --size-md-16: 1rem;
+  --size-lg-18: 1.125rem;
+  --size-xl-20: 1.25rem;
+  --size-2xl-24: 1.5rem;
+  --size-3xl-28: 1.75rem;
+  --size-4xl-32: 2rem;
+  --size-5xl-40: 2.5rem;
+  --size-6xl-48: 3rem;
+  --size-7xl-56: 3.5rem;
+  --size-8xl-64: 4rem;
+  --size-9xl-72: 4.5rem;
+  --size-10xl-80: 5rem;
+  --size-11xl-88: 5.5rem;
+  --size-12xl-96: 6rem;
+  --size-13xl-110: 6.875rem;
+
+  --font-family-base: "Inter";
+  --font-size-body: var(--size-md-16);
+  --font-size-heading: var(--size-2xl-24);
+  --font-size-subhead: var(--size-lg-18);
+  --font-size-label: var(--size-md-16);
+  --font-size-caption: var(--size-sm-14);
+
+  --line-height-3xl: var(--size-3xl-28);
+  --line-height-xl: var(--size-xl-20);
+  --line-height-lg: var(--size-lg-18);
+  --line-height-md: var(--size-md-16);
+
+  --letter-spacing-none: 0;
+
+  --font-weight-bold: 800;
+  --font-weight-medium: 500;
+  --font-weight-regular: 400;
+  --font-weight-thin: 200;
+
+  --color-white-1: #ffffff;
+
+  --color-gray-1: #fbfcfa;
+  --color-gray-2: #f0f3ee;
+  --color-gray-3: #e3e7e0;
+  --color-gray-4: #b7c3b6;
+  --color-gray-5: #69736a;
+  --color-gray-6: #526055;
+  --color-gray-7: #272c28;
+  --color-gray-8: rgb(39 44 40 / 48%);
+  --color-gray-9: #f4f3ef;
+  --color-gray-10: #e9e7e2;
+  --color-gray-11: #dedbd3;
+  --color-gray-12: #333333;
+  --color-gray-13: #b5b2a9;
+  --color-gray-14: #f0eee8;
+
+  --color-black-1: #1a1a1a;
+  --color-black-2: #080808;
+
+  --color-green-1: #edf6ef;
+  --color-green-2: #edf4ee;
+  --color-green-3: #37634a;
+  --color-green-4: #2e6543;
+  --color-green-5: #294d39;
+  --color-green-6: #203e2d;
+  --color-green-7: #e1ebe2;
+  --color-green-8: #d3e2d5;
+  --color-green-9: #196740;
+  --color-green-10: #d7eedf;
+
+  --color-red-1: #fceeee;
+  --color-red-2: #b13636;
+  --color-red-3: #982b2b;
+  --color-red-4: #7e2222;
+
+  --color-yellow-1: #fff7e6;
+  --color-yellow-2: #865b13;
+
+  --color-blue-1: #eef4fb;
+  --color-blue-2: #315f8c;
+}

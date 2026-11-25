@@ -1,0 +1,36 @@
+{
+  "name": "notes-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "test": "vitest run",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "@pinia/nuxt": "^1.0.3",
+    "lodash-es": "^4.18.1",
+    "nuxt": "^4.6.4",
+    "nuxt-mdi": "^2.1.2",
+    "pinia": "^4.1.0",
+    "vue": "^3.5.45",
+    "vue-router": "^5.4.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@nuxt/test-utils": "^4.4.0",
+    "@stylistic/eslint-plugin": "^4.4.0",
+    "@stylistic/eslint-plugin-ts": "^4.4.0",
+    "@types/lodash-es": "^4.17.12",
+    "@vue/test-utils": "^2.6.0",
+    "eslint": "^10.15.0",
+    "happy-dom": "^21.0.4",
+    "sass": "^1.108.2",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.2"
+  }
+}
