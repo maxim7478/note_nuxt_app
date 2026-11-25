@@ -11,6 +11,12 @@ const getData = () => {
     noteStore.getData(id as string)
   } catch (err) {
     console.log(err)
+    throw createError({
+      status: 404,
+      statusMessage: 'Note not found',
+      data: { reason: 'note-not-found' },
+      fatal: true,
+    })
   }
 }
 
