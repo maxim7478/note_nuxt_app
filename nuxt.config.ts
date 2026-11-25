@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     { path: '~/widgets', pathPrefix: false, extensions: ['vue'] },
     { path: '~/providers', pathPrefix: false, extensions: ['vue'] },
   ],
+  ssr: false,
   routeRules: {
     '/notes': { ssr: false },
     '/notes/**': { ssr: false },

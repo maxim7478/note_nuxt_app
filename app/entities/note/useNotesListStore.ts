@@ -1,6 +1,6 @@
 import type {INote} from "~/entities/note/types.ts";
 import { usePersistStorageStore } from "~/shared/stores/persist-storage-store";
-import {copyObject} from "~/shared/utils/copy-object";
+import {generateId, copyObject} from "~/shared";
 
 export const useNotesListStore = defineStore('notesListStore', () => {
   const { storage } = usePersistStorageStore()
@@ -27,7 +27,7 @@ export const useNotesListStore = defineStore('notesListStore', () => {
   const addNewItem = (note: Omit<INote, 'id' | 'dateCreated' | 'dateUpdated'>) => {
     const item = {
       ...note,
-      id: crypto.randomUUID(),
+      id: generateId(),
       dateCreated: new Date().toString(),
       dateUpdated: new Date().toString(),
       items: copyObject(note.items),

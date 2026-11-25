@@ -1,10 +1,11 @@
 import type {IModalProps} from "~/shared/stores/modal-store/types.ts";
+import {generateId} from "~/shared";
 
 export const useModalStore = defineStore('modalStore', () => {
   const modalsStack = ref<IModalProps[]>([]);
 
   const addModalToStack = (dialogConfig: Omit<IModalProps, 'id'>) => {
-    const id = crypto.randomUUID();
+    const id = generateId();
     modalsStack.value.push({
       config: {
         id,

@@ -1,7 +1,7 @@
 import type {TNullable} from "~/shared/types";
 import type {INote} from "~/entities/note/types.ts";
 import {useNotesListStore} from "~/entities";
-import {copyObject} from "~/shared/utils/copy-object";
+import {copyObject} from "~/shared";
 
 export const useNoteStore = defineStore('noteStore', () => {
   const notesListStore = useNotesListStore()

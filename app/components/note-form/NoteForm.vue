@@ -7,12 +7,14 @@ import {
   NOTES_EDIT_PAGE,
   NOTES_PAGE,
   ModalConfirm,
-  useUndoRedo, useIsMobile
+  useHistory,
+  copyObject,
+  useUndoRedo,
+  useIsMobile,
+  generateId
 } from "~/shared";
-import type {INote, INotePoint} from "~/entities/note/types.ts";
+import type {INote, INotePoint} from "~/entities";
 import {useNoteStore} from '~/entities'
-import {copyObject} from "~/shared/utils/copy-object";
-import {useHistory} from "~/shared/composables/useHistory";
 
 type TNoteDraft = Pick<INote, 'items' | 'title'> & {
   versionSchema: number;
@@ -148,7 +150,7 @@ const addItem = () => {
   if (!text) return
 
   const item: INotePoint = {
-    id: crypto.randomUUID(),
+    id: generateId(),
     text,
     complete: false
   }

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import {type INote, useNotesListStore} from "~/entities";
-import {copyObject} from "~/shared/utils/copy-object";
-import {EBaseButtonTheme, ModalConfirm} from "~/shared";
+import {EBaseButtonTheme, ModalConfirm, copyObject} from "~/shared";
 
 const notesListStore = useNotesListStore()
 const modalStore = useModalStore()
