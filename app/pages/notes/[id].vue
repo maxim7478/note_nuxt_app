@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import {useNoteStore} from "~/entities";
+import {useNoteStore, useNotesListStore} from "~/entities";
 
 const route = useRoute()
 const noteStore = useNoteStore()
+const notesListStore = useNotesListStore()
 
 const getData = () => {
   try {
@@ -22,7 +23,20 @@ const getData = () => {
 
 getData()
 
+const handleStorage = (event: StorageEvent) => {
+  if (event.storageArea !== window.localStorage) return
+  if (event.key !== 'notesList' && event.key !== null) return
+
+  const id = route.params.id
+  if (typeof id === 'string') notesListStore.checkNoteExists(id)
+}
+
+onMounted(() => {
+  window.addEventListener('storage', handleStorage)
+})
+
 onBeforeUnmount(() => {
+  window.removeEventListener('storage', handleStorage)
   noteStore.clearNoteData()
 })
 </script>

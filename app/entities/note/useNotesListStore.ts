@@ -10,9 +10,7 @@ export const useNotesListStore = defineStore('notesListStore', () => {
   const getNoteList = () => {
     const list = storage.get('notesList')
 
-    if (list && Array.isArray(list)) {
-      listNotes.value = list
-    }
+    listNotes.value = Array.isArray(list) ? list : []
   }
 
   const init = () => {
@@ -70,6 +68,20 @@ export const useNotesListStore = defineStore('notesListStore', () => {
     return item
   }
 
+  const checkNoteExists = (id: string): boolean => {
+    getNoteList()
+
+    if (listNotes.value.some(note => note.id === id)) return true
+
+    showError({
+      status: 404,
+      statusMessage: 'Note not found',
+      data: { reason: 'note-not-found' },
+    })
+
+    return false
+  }
+
   init()
 
   return {
@@ -80,5 +92,6 @@ export const useNotesListStore = defineStore('notesListStore', () => {
     getNoteList,
     updateNoteItem,
     clearAll,
+    checkNoteExists,
   }
 })

@@ -14,7 +14,7 @@ import {
   generateId
 } from "~/shared";
 import type {INote, INotePoint} from "~/entities";
-import {useNoteStore} from '~/entities'
+import {useNoteStore, useNotesListStore} from '~/entities'
 
 type TNoteDraft = Pick<INote, 'items' | 'title'> & {
   versionSchema: number;
@@ -34,6 +34,7 @@ const props = defineProps<{
 const route = useRoute()
 
 const noteStore = useNoteStore()
+const notesListStore = useNotesListStore()
 const modalStore = useModalStore()
 const { storage } = usePersistStorageStore()
 const isMobile = useIsMobile()
@@ -47,6 +48,7 @@ const newPointForm = ref({
 const titleForm = ref({
   title: ''
 })
+const isFormChanged = ref(false);
 const loading = ref(false);
 const points = ref<INotePoint[]>([]);
 const listDrafts = ref<TNoteDraft[]>([])
@@ -125,6 +127,7 @@ const updateNoteItem = async () => {
   try {
     const valid = await formTemplate.value?.validate();
     if (!noteStore.noteItem || isNew.value || !valid) return
+    if (!notesListStore.checkNoteExists(noteStore.noteItem.id)) return
     loading.value = true;
     const payload = {
       id: noteStore.noteItem.id,
@@ -303,9 +306,33 @@ const handleTitleBlur = () => {
   history.record({ field: 'title', before: titleBeforeEdit, after })
 }
 
+const handleCancel = () => {
+  if (!isFormChanged.value) {
+    navigateTo({ name: NOTES_PAGE })
+  } else {
+    modalStore.addModalToStack({
+      component: ModalConfirm,
+      props: {
+        confirmTheme: EBaseButtonTheme.Danger,
+        confirmLabel: 'Подтвердить',
+        text: 'Вы уверены что хотите отменить изменения?',
+        title: 'Подтверждение'
+      },
+      handlers: {
+        confirm: () => {
+          navigateTo({ name: NOTES_PAGE })
+          storage.remove(DRAFT_STORAGE_KEY)
+        }
+      }
+    })
+  }
+
+}
+
 useUndoRedo({ undo: history.undo, redo: history.redo })
 
 watch([titleForm, points], () => {
+  isFormChanged.value = true
   updateDraftData()
 }, {
   deep: true,
@@ -401,6 +428,12 @@ onMounted(() => {
       </BaseSectionItem>
     </BaseSections>
     <div class="note-create__actions">
+      <BaseButton
+        :theme="EBaseButtonTheme.Secondary"
+        @click="handleCancel"
+      >
+        Отменить
+      </BaseButton>
       <BaseButton
         v-if="!isNew"
         :theme="EBaseButtonTheme.Danger"
